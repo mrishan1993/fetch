@@ -1,10 +1,12 @@
 const express = require('express');
-const { sendNotification } = require('./controllers/send_notification');
+const { fetchJobs } = require('./controllers/fetch_jobs');
 const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
-  sendNotification()
+  
+  fetchJobs()
+  res.send(fetchJobs());
 });
 
 app.listen(port, () => {
