@@ -1,7 +1,6 @@
+import express from "express";
+import { cron } from "./controllers/cron";
 
-const { sendNotification } = require('./controllers/send_notification');
-function main () {
-  sendNotification()
-}
+const app = express();
 
-main()
+app.use('/cron', cron);

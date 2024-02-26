@@ -1,7 +1,8 @@
-const { sendNotification } = require('./controllers/send_notification');
+import { sendNotification } from "./send_notification";
 
-// Define the main function to be executed on schedule
-async function main() {
+export const cron = async () => {
+    
+    //code for the automated task
     try {
         // Execute the main logic from index.js
         await sendNotification()
@@ -9,7 +10,5 @@ async function main() {
     } catch (error) {
         console.error('An error occurred during scheduled task:', error);
     }
-}
 
-// Execute the main function
-main();
+};
