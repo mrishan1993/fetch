@@ -3,4 +3,23 @@ import { cron } from "./controllers/cron";
 
 const app = express();
 
+app.get('/trigger-cron', async (req, res) => {
+  try {
+    // Call the cron job controller function directly
+    await cron();
+
+    // Respond with a success message
+    res.status(200).send("Cron job triggered successfully.");
+  } catch (error) {
+    // If an error occurs, respond with an error message
+    console.error("Error triggering cron job:", error);
+    res.status(500).send("An error occurred while triggering the cron job.");
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
 app.use('/cron', cron);
