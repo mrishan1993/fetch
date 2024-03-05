@@ -4,6 +4,8 @@ import { sendNotification } from "./controllers/send_notification";
 
 const app = express();
 
+console.log("intiatl start")
+
 // app.get('/trigger-cron', async (req, res) => {
 //   try {
 //     // Call the cron job controller function directly
