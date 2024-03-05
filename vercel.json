@@ -1,6 +1,6 @@
 {
     "crons": [{
       "path": "/controllers/cron",
-      "schedule": "4 1 * * *"
+      "schedule": "8 10 * * *"
     }] 
   }
