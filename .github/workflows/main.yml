@@ -1,12 +1,13 @@
 name: Run Node.js script on schedule
 
 on:
-  schedule:
-  - cron: "0 * * * *"  # Run every minute (for testing)
+  schedule: # Define the cron job schedule here
+    - cron: "0 * * * *"  # This runs every minute (for testing)
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 20
@@ -16,5 +17,4 @@ jobs:
       - name: Install dependencies
         run: npm ci  # Or yarn install if you use yarn
       - name: Run the script
-        run: node ./index.js  # Assuming index.js is in the root directory
-
+        run: node index.js
