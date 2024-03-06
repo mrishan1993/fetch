@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000; // Use the provided port or default to 30
 // Define routes
 app.get('/start', async (req, res) => {
   try {
+    console.log("Starting script")
     await sendNotification();
     res.send('Notification sent successfully!');
   } catch (error) {
