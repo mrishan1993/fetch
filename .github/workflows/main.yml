@@ -1,8 +1,8 @@
 name: Run Node.js script on schedule
 
 on:
-  schedule: # Define the cron job schedule here
-    cron: "0 * * * *"  # This runs every minute (for testing)
+  schedule:
+  - cron: "0 * * * *"  # Run every minute (for testing)
 
 jobs:
   build:
