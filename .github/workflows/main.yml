@@ -1,8 +1,8 @@
 name: Run Node.js script on schedule
 
 on:
-  schedule:
-  - cron: "0 * * * *"  # Run every minute (for testing)
+  schedule: # Define the cron job schedule here
+    cron: "0 * * * *"  # This runs every minute (for testing)
 
 jobs:
   build:
@@ -18,4 +18,3 @@ jobs:
         run: npm ci  # Or yarn install if you use yarn
       - name: Run the script
         run: node index.js
- 
