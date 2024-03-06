@@ -1,5 +1,6 @@
 const express = require('express');
-const { sendNotification } = require('../controllers/send_notification');
+const { sendNotification } = require('./controllers/send_notification');
+
 
 
 // Create an instance of Express app
