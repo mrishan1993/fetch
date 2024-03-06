@@ -1,6 +1,0 @@
-{
-    "crons": [{
-      "path": "/controllers/cron",
-      "schedule": "14 10 * * *"
-    }] 
-  }
