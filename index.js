@@ -7,9 +7,15 @@ const app = express();
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
 
 // Define routes
-app.get('/start', (req, res) => {
-  sendNotification()
-  res.send('Hello, World!'); // Send a simple response
+// Define routes
+app.get('/start', async (req, res) => {
+  try {
+    await sendNotification();
+    res.send('Notification sent successfully!');
+  } catch (error) {
+    console.error('Error sending notification:', error);
+    res.status(500).send('An error occurred while sending the notification.');
+  }
 });
 
 // Start the server
