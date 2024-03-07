@@ -13,10 +13,10 @@ app.get('/start', async (req, res) => {
   try {
     console.log("Starting script")
     sendNotification()
-    res.send('Notification sent successfully!');
+    res.status(200).send("OK")
   } catch (error) {
     // console.error('Error sending notification:', error);
-    res.status(500).send('An error occurred while sending the notification.');
+    res.status(500).send('Error');
   }
 });
 
