@@ -14,7 +14,7 @@ app.get('/start', async (req, res) => {
     await sendNotification()
     res.send('Notification sent successfully!');
   } catch (error) {
-    console.error('Error sending notification:', error);
+    // console.error('Error sending notification:', error);
     res.status(500).send('An error occurred while sending the notification.');
   }
 });

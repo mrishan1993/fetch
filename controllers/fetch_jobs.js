@@ -38,7 +38,7 @@ function fetchJobs () {
                     const { role, company } = obj;
                     return !_.some(uniqueCombinations, { role, company });
                 });
-                console.log("final result ", filteredArray)
+                // console.log("final result ", filteredArray)
                 if (filteredArray.length > 0) {
                     await knex('jobs').insert(filteredArray)
                     resolve(filteredArray)
@@ -47,13 +47,13 @@ function fetchJobs () {
                 }
                 
             } catch (e) {
-                console.log("SQL Error: ", e)
+                // console.log("SQL Error: ", e)
                 reject(e)
             }
             
             
         }).catch(error => {
-            console.log(error); // rejectReason of any first rejected promise
+            // console.log(error); // rejectReason of any first rejected promise
             reject(error)
         });    
     })
@@ -85,7 +85,6 @@ const fetchFromWeb3 = (url) => {
                         jobs.push(obj);
                     }
                 });
-                console.log("Inside web3", jobs)
                 resolve(jobs);
             }
         });
@@ -114,7 +113,6 @@ async function fetchFromGreenhouse () {
                             jobs.push(obj);
                         }
                     });
-                    console.log("Inside greenhouse", jobs)
                     resolve(jobs);                    
                 }
             });    
@@ -133,7 +131,6 @@ async function fetchFromLever () {
             x(leverLinks[i], ['.posting-title h5']) // Selecting elements to scrape
             ((err, content) => {
                 if (err) {
-                    console.log("error ", err)
                 } else {
                     content.forEach(item => {
                         let obj = {
@@ -146,7 +143,6 @@ async function fetchFromLever () {
                             jobs.push(obj);
                         }
                     });
-                    console.log("Inside greenhouse", jobs)
                     resolve(jobs);
                 }
             });    
