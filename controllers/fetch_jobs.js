@@ -47,7 +47,7 @@ function fetchJobs () {
                 }
                 
             } catch (e) {
-                // console.log("SQL Error: ", e)
+                console.log("SQL Error: ", e)
                 reject(e)
             }
             
