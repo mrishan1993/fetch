@@ -88,6 +88,7 @@ const fetchFromWeb3 = (url) => {
                         jobs.push(obj);
                     }
                 });
+                console.log("web3 jobs ", jobs)
                 resolve(jobs);
             }
         });
@@ -116,6 +117,7 @@ async function fetchFromGreenhouse () {
                             jobs.push(obj);
                         }
                     });
+                    console.log("greenhouse jobs ", jobs)
                     resolve(jobs);                    
                 }
             });    
@@ -146,6 +148,7 @@ async function fetchFromLever () {
                             jobs.push(obj);
                         }
                     });
+                    console.log("level jobs ", jobs)
                     resolve(jobs);
                 }
             });    
