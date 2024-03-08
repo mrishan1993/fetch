@@ -32,6 +32,7 @@ function fetchJobs () {
                 console.log("query started")
                 const fetchedDate = sub(new Date(), {days: 7})
                 let lastSevenDaysJobs = await knex('jobs').where("active", 1).where('created_at', '>=', fetchedDate).select('id', 'role', 'company', 'salary_range', 'location', 'url', 'created_at')
+                console.log("query started 1 ")
                 lastSevenDaysJobs = Object.values(JSON.parse(JSON.stringify(lastSevenDaysJobs)));
                 const uniqueCombinations = _.map(lastSevenDaysJobs, obj => _.pick(obj, ['role', 'company']));
                 const filteredArray = _.filter(values, obj => {
@@ -40,7 +41,9 @@ function fetchJobs () {
                 });
                 // console.log("final result ", filteredArray)
                 if (filteredArray.length > 0) {
+                    console.log("query started 2 ")
                     await knex('jobs').insert(filteredArray)
+                    console.log("query started 3 ")
                     resolve(filteredArray)
                 } else {
                     reject("No new jobs")
