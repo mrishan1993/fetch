@@ -72,8 +72,10 @@ const fetchFromWeb3 = (url) => {
         .limit(30) // Limiting to 3 pages but it returns only 3 items. so changed it to 30 items. // TODO
         ((err, content) => {
             if (err) {
+                console.log("err ", err)
                 reject(err);
             } else {
+                console.log("web3 infiltered", content)
                 content.forEach(item => {
                     let o = item.split(/\s{2,}/);
                     let obj = {
@@ -83,6 +85,7 @@ const fetchFromWeb3 = (url) => {
                         salary_range: o[5],
                         source: "web3jobs.com"
                     };
+                    
                     if ((obj.salary_range && obj.salary_range.slice(-4, -1) > 140) &&
                         (obj.role.includes("Product Manager") || obj.role.includes("Senior Product Manager"))) {
                         jobs.push(obj);
