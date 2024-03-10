@@ -70,32 +70,58 @@ const fetchFromWeb3 = (url) => {
     return new Promise(function(resolve, reject) {
         let jobs = [];
         console.log("call to web3")
-        x("https://web3.career/product-manager-jobs", '.table_row') // Selecting elements to scrape
-        ((err, content) => {
-            if (err) {
-                console.log("err ", err)
-                reject(err);
-            } else {
-                console.log("web3 infiltered", content)
-                content.forEach(item => {
-                    let o = item.split(/\s{2,}/);
-                    let obj = {
-                        role: o[1],
-                        company: o[2],
-                        location: o[4],
-                        salary_range: o[5],
-                        source: "web3jobs.com"
-                    };
+        x("https://web3.career/product-manager-jobs", ['.table_row']) // Selecting elements to scrape
+            ((err, content) => {
+                if (err) {
+                    console.log("error ", err)
+                } else {
+                    console.log("content ", content)
+                    content.forEach(item => {
+                        let o = item.split(/\s{2,}/);
+                        let obj = {
+                            role: o[1],
+                            company: o[2],
+                            location: o[4],
+                            salary_range: o[5],
+                            source: "web3jobs.com"
+                        };
+                        
+                        if ((obj.salary_range && obj.salary_range.slice(-4, -1) > 140) &&
+                            (obj.role.includes("Product Manager") || obj.role.includes("Senior Product Manager"))) {
+                            jobs.push(obj);
+                        }
+                    });
+                    console.log("web jobs ", jobs)
+                    resolve(jobs);                    
+                }
+            });    
+        // x("https://web3.career/product-manager-jobs", '.table_row') // Selecting elements to scrape
+        // .paginate('li.next > a.page-link@href') // Pagination selector
+        // ((err, content) => {
+        //     if (err) {
+        //         console.log("err ", err)
+        //         reject(err);
+        //     } else {
+        //         console.log("web3 infiltered", content)
+        //         content.forEach(item => {
+        //             let o = item.split(/\s{2,}/);
+        //             let obj = {
+        //                 role: o[1],
+        //                 company: o[2],
+        //                 location: o[4],
+        //                 salary_range: o[5],
+        //                 source: "web3jobs.com"
+        //             };
                     
-                    if ((obj.salary_range && obj.salary_range.slice(-4, -1) > 140) &&
-                        (obj.role.includes("Product Manager") || obj.role.includes("Senior Product Manager"))) {
-                        jobs.push(obj);
-                    }
-                });
-                console.log("web3 jobs ", jobs)
-                resolve(jobs);
-            }
-        });
+        //             if ((obj.salary_range && obj.salary_range.slice(-4, -1) > 140) &&
+        //                 (obj.role.includes("Product Manager") || obj.role.includes("Senior Product Manager"))) {
+        //                 jobs.push(obj);
+        //             }
+        //         });
+        //         console.log("web3 jobs ", jobs)
+        //         resolve(jobs);
+        //     }
+        // });
     });
 };
 
