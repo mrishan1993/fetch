@@ -71,8 +71,6 @@ const fetchFromWeb3 = (url) => {
         let jobs = [];
         console.log("call to web3")
         x("https://web3.career/product-manager-jobs", '.table_row') // Selecting elements to scrape
-        .paginate('li.next > a.page-link@href') // Pagination selector
-        .limit(30) // Limiting to 3 pages but it returns only 3 items. so changed it to 30 items. // TODO
         ((err, content) => {
             if (err) {
                 console.log("err ", err)
