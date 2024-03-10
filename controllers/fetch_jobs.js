@@ -16,12 +16,15 @@ const knex = require('knex')({
 
 
 var x = Xray()
-function fetchJobs () {
+async function fetchJobs () {
+    let web3 = await fetchFromWeb3()
     return new Promise(function(resolve, reject) {
         console.log("staring call")
+        
         const allJobs = Promise.all([fetchFromWeb3(), fetchFromGreenhouse(), fetchFromLever()]);
         allJobs.then(async values => {
             values = _.flatten(values)
+            values = values.concat(web3)
             
             values = values.map(obj => ({
                 ...obj, // Copy existing properties
